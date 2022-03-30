@@ -1,14 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOMClient from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AppWeb3Provider } from './hooks';
+import BN from 'bignumber.js';
 
-ReactDOM.render(
+BN.config({
+  ROUNDING_MODE: BN.ROUND_DOWN,
+});
+
+const container = document.getElementById('root')!;
+ReactDOMClient.createRoot(container).render(
   <React.StrictMode>
-    <App />
+    <AppWeb3Provider>
+      <App />
+    </AppWeb3Provider>
   </React.StrictMode>,
-  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
